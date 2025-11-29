@@ -1,12 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/" , [SiteController::class, "home"])->name("home");
+Route::get("/medicines" , [SiteController::class, "medicines"])->name("medicines.index");
 
+
+
+
+
+
+
+
+
+
+// will change later
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
