@@ -1,4 +1,6 @@
 <x-layouts.main>
+
+    {{-- @dd($medicines) --}}
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -58,36 +60,44 @@
         <!-- Medicine Grid -->
         <div class="medicine-grid" id="medicineGrid">
             <!-- Medicine Card 1 -->
-            <article class="medicine-card" data-category="analgesics">
-                <div class="card-header">
-                    <span class="card-category">Analgesics</span>
-                    <span class="card-status">
-                        <span class="status-dot"></span>
-                        Published
-                    </span>
-                </div>
-                <div class="card-body">
-                    <h2 class="medicine-name">Ibuprofen</h2>
-                    <p class="generic-name">Ibuprofen (NSAID)</p>
-                    <p class="medicine-summary">A nonsteroidal anti-inflammatory drug used to reduce fever, pain, and
-                        inflammation. Commonly used for headaches, dental pain, menstrual cramps, muscle aches, and
-                        arthritis.</p>
-                </div>
-                <div class="card-footer">
-                    <div class="side-effects-preview">
-                        <span class="effect-badge mild">Mild: 3</span>
-                        <span class="effect-badge moderate">Moderate: 2</span>
-                    </div>
-                    <a href="#" class="view-details">
-                        View Details
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-            </article>
 
-            <!-- Medicine Card 2 -->
+            @if ($medicines->isNotEmpty())
+
+                @foreach ($medicines as $item)
+                    <article class="medicine-card" data-category="analgesics">
+                        <div class="card-header">
+                            <span class="card-category">{{ $item->category->name }}</span>
+                            <span class="card-status">
+                                <span class="status-dot"></span>
+                                Published
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="medicine-name">{{ $item->name }} </h2>
+                            <p class="generic-name">{{ $item->generic_name }}</p>
+                            <p class="medicine-summary">
+                                {{ $item->summary }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="side-effects-preview">
+                                <span class="effect-badge mild">Mild: 3</span>
+                                <span class="effect-badge moderate">Moderate: 2</span>
+                            </div>
+                            <a href="{{ route("medicines.show", $item->slug) }}" class="view-details">
+                                View Details
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                @endforeach
+            @else
+                <p>No medicines found.</p>
+            @endif
+
+            {{-- <!-- Medicine Card 2 -->
             <article class="medicine-card" data-category="antibiotics">
                 <div class="card-header">
                     <span class="card-category">Antibiotics</span>
@@ -321,7 +331,7 @@
                         </svg>
                     </a>
                 </div>
-            </article>
+            </article> --}}
         </div>
     </main>
 

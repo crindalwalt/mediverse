@@ -9,4 +9,10 @@ class SideEffect extends Model
 {
     /** @use HasFactory<\Database\Factories\SideEffectFactory> */
     use HasFactory;
+
+
+
+    public function medicine(){
+        return $this->belongsTo(Medicine::class , 'medicine_id');
+    }
 }

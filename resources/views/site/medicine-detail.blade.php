@@ -4,13 +4,14 @@
         <div class="breadcrumb-content">
             <a href="#" class="breadcrumb-link">Home</a>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
+                <path d="M9 18l6-6-6-6" />
             </svg>
-            <a href="#" class="breadcrumb-link">Medicines</a>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
+            <a href="{{ route('medicines.index') }}" class="breadcrumb-link">Medicines</a>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M9 18l6-6-6-6" />
             </svg>
-            <span class="breadcrumb-current">Ibuprofen</span>
+            <span class="breadcrumb-current">{{ $med->name }}</span>
         </div>
     </nav>
 
@@ -19,61 +20,66 @@
         <div class="medicine-header-content">
             <div class="medicine-header-main">
                 <div class="medicine-meta">
-                    <span class="medicine-category-tag">Analgesics</span>
+                    <span class="medicine-category-tag">{{ $med->category->name }}</span>
                     <span class="medicine-status-tag">
                         <span class="status-dot"></span>
                         Published
                     </span>
                 </div>
-                <h1 class="medicine-title">Ibuprofen</h1>
-                <p class="medicine-generic">Generic Name: <strong>Ibuprofen (NSAID)</strong></p>
-                <p class="medicine-intro">A nonsteroidal anti-inflammatory drug (NSAID) used to reduce fever, pain, and inflammation in the body.</p>
+                <h1 class="medicine-title">{{ $med->name }}</h1>
+                <p class="medicine-generic">Generic Name: <strong>{{ $med->generic_name }}</strong></p>
+                <p class="medicine-intro">{{ $med->summary }}</p>
 
                 <div class="medicine-quick-stats">
                     <div class="quick-stat">
                         <div class="quick-stat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"/>
-                                <rect x="14" y="3" width="7" height="7"/>
-                                <rect x="14" y="14" width="7" height="7"/>
-                                <rect x="3" y="14" width="7" height="7"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7" />
+                                <rect x="14" y="3" width="7" height="7" />
+                                <rect x="14" y="14" width="7" height="7" />
+                                <rect x="3" y="14" width="7" height="7" />
                             </svg>
                         </div>
                         <div class="quick-stat-content">
                             <span class="quick-stat-label">Category</span>
-                            <span class="quick-stat-value">Analgesics</span>
+                            <span class="quick-stat-value">{{ $med->category->name }}</span>
                         </div>
                     </div>
                     <div class="quick-stat">
                         <div class="quick-stat-icon blue">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
                             </svg>
                         </div>
                         <div class="quick-stat-content">
                             <span class="quick-stat-label">Last Updated</span>
-                            <span class="quick-stat-value">Nov 29, 2025</span>
+                            <span class="quick-stat-value">{{ $med->updated_at->format('M d, Y') }}</span>
                         </div>
                     </div>
                     <div class="quick-stat">
                         <div class="quick-stat-icon green">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
                             </svg>
                         </div>
                         <div class="quick-stat-content">
                             <span class="quick-stat-label">Side Effects</span>
-                            <span class="quick-stat-value">5 Documented</span>
+                            <span class="quick-stat-value">{{ $med->sideEffects->count() }} Documented</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="medicine-header-visual">
                 <div class="medicine-icon-large">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path
+                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                 </div>
             </div>
@@ -88,22 +94,23 @@
                 <!-- Summary Section -->
                 <div class="content-section">
                     <h2 class="section-title">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10 9 9 9 8 9"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
                         </svg>
                         Summary
                     </h2>
                     <div class="section-content">
-                        <p>Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) that works by reducing hormones that cause inflammation and pain in the body. It is commonly used to reduce fever and treat pain or inflammation caused by many conditions such as headache, toothache, back pain, arthritis, menstrual cramps, or minor injury.</p>
+                        <p>{{ $med->long_description }}</p>
                     </div>
                 </div>
 
                 <!-- Description Section -->
-                <div class="content-section">
+                {{-- <div class="content-section">
                     <h2 class="section-title">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
@@ -146,30 +153,49 @@
                         <h3>Precautions</h3>
                         <p>Before taking ibuprofen, tell your doctor or pharmacist if you are allergic to it, or to aspirin or other NSAIDs. Ibuprofen should be used with caution in people with heart disease, high blood pressure, liver or kidney disease, or a history of stomach ulcers or bleeding.</p>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Side Effects Section -->
                 <div class="content-section">
                     <h2 class="section-title">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                         </svg>
                         Side Effects
                     </h2>
                     <div class="section-content">
-                        <p class="side-effects-intro">Below are the documented side effects of Ibuprofen, categorized by severity. If you experience any severe side effects, seek medical attention immediately.</p>
+                        <p class="side-effects-intro">Below are the documented side effects of {{ $med->name }},
+                            categorized by severity. If you experience any severe side effects, seek medical attention
+                            immediately.</p>
 
                         <div class="side-effects-grid">
-                            <!-- Mild Side Effects -->
-                            <div class="side-effect-card mild">
-                                <div class="side-effect-header">
-                                    <span class="severity-badge mild">Mild</span>
-                                </div>
-                                <h4>Upset Stomach</h4>
-                                <p>Nausea, vomiting, gas, or stomach pain may occur. Taking ibuprofen with food can help reduce these effects.</p>
-                            </div>
 
-                            <div class="side-effect-card mild">
+                            @if ($med->sideEffects->IsNotEmpty())
+                                <!-- Mild Side Effects -->
+
+                                @foreach ($med->sideEffects as $item)
+                                    <div class="side-effect-card {{ $item->severity ?? "positive" }}">
+                                        @if ($item->severity == null)
+                                            <div class="side-effect-header">
+                                                <span class="severity-badge {{ $item->severity ?? "positive" }}">Positive</span>
+                                            </div>
+                                        @else
+                                            <div class="side-effect-header">
+                                                <span class="severity-badge {{ $item->severity ?? "positive" }}">{{ $item->severity }}</span>
+                                            </div>
+                                        @endif
+                                        <h4>{{ $item->title }}</h4>
+                                        <p>
+                                            {{ $item->description }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>No documented side effects available for this medicine.</p>
+                            @endif
+
+                            {{-- <div class="side-effect-card mild">
                                 <div class="side-effect-header">
                                     <span class="severity-badge mild">Mild</span>
                                 </div>
@@ -218,7 +244,7 @@
                                 </div>
                                 <h4>Rapid Pain Relief</h4>
                                 <p>Provides effective pain relief within 30-60 minutes of administration.</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -294,44 +320,53 @@
                     <div class="related-list">
                         <a href="#" class="related-item">
                             <div class="related-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                 </svg>
                             </div>
                             <div class="related-info">
                                 <span class="related-name">Acetaminophen</span>
                                 <span class="related-category">Analgesics</span>
                             </div>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 18l6-6-6-6"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6" />
                             </svg>
                         </a>
                         <a href="#" class="related-item">
                             <div class="related-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                 </svg>
                             </div>
                             <div class="related-info">
                                 <span class="related-name">Aspirin</span>
                                 <span class="related-category">Analgesics</span>
                             </div>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 18l6-6-6-6"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6" />
                             </svg>
                         </a>
                         <a href="#" class="related-item">
                             <div class="related-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                 </svg>
                             </div>
                             <div class="related-info">
                                 <span class="related-name">Naproxen</span>
                                 <span class="related-category">Analgesics</span>
                             </div>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 18l6-6-6-6"/>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6" />
                             </svg>
                         </a>
                     </div>
@@ -340,13 +375,15 @@
                 <!-- Disclaimer -->
                 <div class="sidebar-card disclaimer">
                     <div class="disclaimer-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="12" y1="8" x2="12" y2="12"/>
-                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
                         </svg>
                     </div>
-                    <p>This information is for educational purposes only and should not replace professional medical advice. Always consult your healthcare provider before taking any medication.</p>
+                    <p>This information is for educational purposes only and should not replace professional medical
+                        advice. Always consult your healthcare provider before taking any medication.</p>
                 </div>
             </aside>
         </div>
@@ -488,8 +525,15 @@
             justify-content: center;
         }
 
-        .quick-stat-icon.blue { background: #dbeafe; color: #2563eb; }
-        .quick-stat-icon.green { background: #dcfce7; color: #16a34a; }
+        .quick-stat-icon.blue {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .quick-stat-icon.green {
+            background: #dcfce7;
+            color: #16a34a;
+        }
 
         .quick-stat-content {
             display: flex;
@@ -665,10 +709,25 @@
             letter-spacing: 0.025em;
         }
 
-        .severity-badge.mild { background: #fef3c7; color: #d97706; }
-        .severity-badge.moderate { background: #ffedd5; color: #ea580c; }
-        .severity-badge.severe { background: #fee2e2; color: #dc2626; }
-        .severity-badge.positive { background: #dcfce7; color: #16a34a; }
+        .severity-badge.mild {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .severity-badge.moderate {
+            background: #ffedd5;
+            color: #ea580c;
+        }
+
+        .severity-badge.severe {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .severity-badge.positive {
+            background: #dcfce7;
+            color: #16a34a;
+        }
 
         .side-effect-card h4 {
             font-size: 1rem;
@@ -744,10 +803,21 @@
             border-radius: 4px;
         }
 
-        .effect-summary-bar.mild { background: #f59e0b; }
-        .effect-summary-bar.moderate { background: #ea580c; }
-        .effect-summary-bar.severe { background: #dc2626; }
-        .effect-summary-bar.positive { background: #16a34a; }
+        .effect-summary-bar.mild {
+            background: #f59e0b;
+        }
+
+        .effect-summary-bar.moderate {
+            background: #ea580c;
+        }
+
+        .effect-summary-bar.severe {
+            background: #dc2626;
+        }
+
+        .effect-summary-bar.positive {
+            background: #16a34a;
+        }
 
         .effect-summary-label {
             display: flex;

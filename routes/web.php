@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/" , [SiteController::class, "home"])->name("home");
 Route::get("/medicines" , [SiteController::class, "medicines"])->name("medicines.index");
-
+Route::get("/medicines/{med:slug}" , [SiteController::class, "medicineDetails"])->name("medicines.show");
 
 
 
