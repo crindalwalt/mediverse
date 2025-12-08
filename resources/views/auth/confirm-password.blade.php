@@ -1,27 +1,36 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+<x-auth-layout>
+    <div class="auth-header">
+        <h2>Confirm Password</h2>
+        <p>This is a secure area. Please confirm your password to continue</p>
     </div>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
+    <form method="POST" action="{{ route('password.confirm') }}" class="auth-form">
         @csrf
 
         <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+                id="password"
+                class="form-input @error('password') error @enderror"
+                type="password"
+                name="password"
+                required
+                autocomplete="current-password"
+                placeholder="Enter your password"
+            />
+            @error('password')
+                <span class="form-error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn-primary">
+            Confirm
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4"/>
+                <circle cx="12" cy="12" r="10"/>
+            </svg>
+        </button>
     </form>
-</x-guest-layout>
+</x-auth-layout>

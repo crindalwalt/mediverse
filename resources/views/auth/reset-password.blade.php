@@ -1,39 +1,79 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
+<x-auth-layout>
+    <div class="auth-header">
+        <h2>Reset Password</h2>
+        <p>Enter your new password below</p>
+    </div>
+
+    <form method="POST" action="{{ route('password.store') }}" class="auth-form">
         @csrf
 
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+                id="email"
+                class="form-input @error('email') error @enderror"
+                type="email"
+                name="email"
+                value="{{ old('email', $request->email) }}"
+                required
+                autofocus
+                autocomplete="username"
+                placeholder="you@example.com"
+            />
+            @error('email')
+                <span class="form-error">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-group">
+            <label for="password" class="form-label">New Password</label>
+            <input
+                id="password"
+                class="form-input @error('password') error @enderror"
+                type="password"
+                name="password"
+                required
+                autocomplete="new-password"
+                placeholder="At least 8 characters"
+            />
+            @error('password')
+                <span class="form-error">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="form-group">
+            <label for="password_confirmation" class="form-label">Confirm Password</label>
+            <input
+                id="password_confirmation"
+                class="form-input @error('password_confirmation') error @enderror"
+                type="password"
+                name="password_confirmation"
+                required
+                autocomplete="new-password"
+                placeholder="Repeat your password"
+            />
+            @error('password_confirmation')
+                <span class="form-error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn-primary">
+            Reset Password
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
     </form>
-</x-guest-layout>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+        Remember your password? <a href="{{ route('login') }}">Sign in</a>
+    </div>
+</x-auth-layout>

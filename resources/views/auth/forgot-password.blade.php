@@ -1,25 +1,48 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<x-auth-layout>
+    <div class="auth-header">
+        <h2>Forgot Password?</h2>
+        <p>No worries! Enter your email and we'll send you a reset link</p>
     </div>
 
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    @if (session('status'))
+        <div style="padding: 0.875rem 1rem; background: #dcfce7; color: #166534; border-radius: 12px; font-size: 0.875rem; margin-bottom: 1.5rem;">
+            {{ session('status') }}
+        </div>
+    @endif
 
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('password.email') }}" class="auth-form">
         @csrf
 
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+                id="email"
+                class="form-input @error('email') error @enderror"
+                type="email"
+                name="email"
+                value="{{ old('email') }}"
+                required
+                autofocus
+                placeholder="you@example.com"
+            />
+            @error('email')
+                <span class="form-error">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn-primary">
+            Send Reset Link
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+        </button>
     </form>
-</x-guest-layout>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+        Remember your password? <a href="{{ route('login') }}">Sign in</a>
+    </div>
+</x-auth-layout>
