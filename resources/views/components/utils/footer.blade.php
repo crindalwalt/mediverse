@@ -81,7 +81,7 @@
                 <a href="#" class="footer-link">Privacy Policy</a>
                 <a href="#" class="footer-link">Terms of Service</a>
                 <a href="#" class="footer-link">Cookie Policy</a>
-                <a href="#" class="footer-link">Accessibility</a>
+                <a href="{{ route("dashboard") }}" class="footer-link">Login As Admin</a>
             </div>
         </div>
     </footer>

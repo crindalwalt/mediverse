@@ -20,7 +20,7 @@
             <div class="sidebar-nav-title">Main</div>
             <ul class="sidebar-nav-list">
                 <li class="sidebar-nav-item">
-                    <a href="{{ route("dashboard") }}" class="sidebar-nav-link active">
+                    <a href="{{ route("dashboard") }}" class="sidebar-nav-link @if(Route::currentRouteName() == 'dashboard') active @endif">
                         <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <rect x="3" y="3" width="7" height="7" />
@@ -49,7 +49,7 @@
             <div class="sidebar-nav-title">Content</div>
             <ul class="sidebar-nav-list">
                 <li class="sidebar-nav-item">
-                    <a href="{{ route("dashboard.medicines") }}" class="sidebar-nav-link">
+                    <a href="{{ route("dashboard.medicines") }}" class="sidebar-nav-link @if(Route::currentRouteName() == 'dashboard.medicines') active @endif">
                         <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path

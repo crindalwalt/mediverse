@@ -8,9 +8,10 @@
                     <h1 class="page-title">Medicines Management</h1>
                     <p class="page-subtitle">Manage and organize all medicines in your directory</p>
                 </div>
-                <a href="#" class="btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 5v14M5 12h14"/>
+                <a href="{{ route("dashboard.medicines.create") }}" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 5v14M5 12h14" />
                     </svg>
                     Add New Medicine
                 </a>
@@ -23,8 +24,10 @@
             <div class="stat-card">
                 <div class="stat-card-header">
                     <div class="stat-card-icon blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>
                 </div>
@@ -36,23 +39,27 @@
                     All medicines in database
                 </div>
             </div>
+            @php
+                $percentage = ($published_medicines/$medicines->count()) * 100;
 
+            @endphp
             <!-- Published -->
             <div class="stat-card">
                 <div class="stat-card-header">
                     <div class="stat-card-icon green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <path d="M22 4L12 14.01l-3-3"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                            <path d="M22 4L12 14.01l-3-3" />
                         </svg>
                     </div>
                 </div>
                 <div class="stat-card-body">
-                    <div class="stat-card-value">7</div>
+                    <div class="stat-card-value">{{ $published_medicines }}</div>
                     <div class="stat-card-label">Published</div>
                 </div>
                 <div class="stat-card-footer">
-                    70% of total
+                    {{ $percentage }}% of total
                 </div>
             </div>
 
@@ -60,14 +67,15 @@
             <div class="stat-card">
                 <div class="stat-card-header">
                     <div class="stat-card-icon orange">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <path d="M14 2v6h6"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <path d="M14 2v6h6" />
                         </svg>
                     </div>
                 </div>
                 <div class="stat-card-body">
-                    <div class="stat-card-value">3</div>
+                    <div class="stat-card-value">{{ $draft_medicines }}</div>
                     <div class="stat-card-label">Draft</div>
                 </div>
                 <div class="stat-card-footer">
@@ -79,15 +87,16 @@
             <div class="stat-card">
                 <div class="stat-card-header">
                     <div class="stat-card-icon purple">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
                         </svg>
                     </div>
                 </div>
                 <div class="stat-card-body">
-                    <div class="stat-card-value">9</div>
+                    <div class="stat-card-value">{{ $categories }}</div>
                     <div class="stat-card-label">Categories</div>
                 </div>
                 <div class="stat-card-footer">
@@ -102,14 +111,15 @@
             <div class="table-card-header">
                 <div class="table-card-title-section">
                     <h2 class="table-card-title">All Medicines</h2>
-                    <span class="table-card-count">10 medicines</span>
+                    <span class="table-card-count">{{  $medicines->count() }} medicines</span>
                 </div>
                 <div class="table-card-actions">
                     <!-- Filter Dropdown -->
                     <div class="table-filter-dropdown">
                         <button class="filter-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
                             </svg>
                             Filter
                         </button>
@@ -118,8 +128,9 @@
                     <!-- Sort Dropdown -->
                     <div class="table-filter-dropdown">
                         <button class="filter-btn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 6h18M7 12h10M11 18h2"/>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M3 6h18M7 12h10M11 18h2" />
                             </svg>
                             Sort
                         </button>
@@ -127,9 +138,10 @@
 
                     <!-- Search -->
                     <div class="table-search">
-                        <svg class="table-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="M21 21l-4.35-4.35"/>
+                        <svg class="table-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35" />
                         </svg>
                         <input type="text" class="table-search-input" placeholder="Search medicines...">
                     </div>
@@ -154,63 +166,81 @@
                         </tr>
                     </thead>
                     <tbody class="data-table-body">
-                        <!-- Medicine Row 1 -->
-                        <tr class="data-table-row">
-                            <td class="data-table-td checkbox-col">
-                                <input type="checkbox" class="table-checkbox">
-                            </td>
-                            <td class="data-table-td">
-                                <div class="medicine-info">
-                                    <div class="medicine-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="medicine-details">
-                                        <div class="medicine-name">Ibuprofen</div>
-                                        <div class="medicine-slug">ibuprofen</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="data-table-td">
-                                <span class="text-secondary">Ibuprofen</span>
-                            </td>
-                            <td class="data-table-td">
-                                <span class="category-badge">Medications</span>
-                            </td>
-                            <td class="data-table-td">
-                                <span class="status-badge status-published">Published</span>
-                            </td>
-                            <td class="data-table-td">
-                                <span class="side-effects-count">3 effects</span>
-                            </td>
-                            <td class="data-table-td">
-                                <span class="text-secondary">Dec 5, 2024</span>
-                            </td>
-                            <td class="data-table-td actions-col">
-                                <div class="table-actions">
-                                    <button class="action-btn action-btn-view" title="View">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                            <circle cx="12" cy="12" r="3"/>
-                                        </svg>
-                                    </button>
-                                    <button class="action-btn action-btn-edit" title="Edit">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                                            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                        </svg>
-                                    </button>
-                                    <button class="action-btn action-btn-delete" title="Delete">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
 
-                        <!-- Medicine Row 2 -->
+                        @if ($medicines->isEmpty())
+                            <tr>
+                                <td colspan="8" class="no-data-cell">
+                                    No medicines found. Please add new medicines to display them here.
+                                </td>
+                            </tr>
+                        @else
+                            @foreach ($medicines as $item)
+                                <!-- Medicine Row 1 -->
+                                <tr class="data-table-row">
+                                    <td class="data-table-td checkbox-col">
+                                        <input type="checkbox" class="table-checkbox">
+                                    </td>
+                                    <td class="data-table-td">
+                                        <div class="medicine-info">
+                                            <div class="medicine-icon">
+                                                <svg width="20" height="20" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                                </svg>
+                                            </div>
+                                            <div class="medicine-details">
+                                                <div class="medicine-name">{{ $item->name }}</div>
+                                                <div class="medicine-slug">{{ $item->slug }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="data-table-td">
+                                        <span class="text-secondary">{{ $item->generic_name }}</span>
+                                    </td>
+                                    <td class="data-table-td">
+                                        <span class="category-badge">{{ $item->category->name }}</span>
+                                    </td>
+                                    <td class="data-table-td">
+                                        <span class="status-badge @if($item->status == 'draft') status-draft @else status-published @endif ">{{ $item->status }}</span>
+                                    </td>
+                                    <td class="data-table-td">
+                                        <span class="side-effects-count">{{ $item->sideEffects->count() }} effects</span>
+                                    </td>
+                                    <td class="data-table-td">
+                                        <span class="text-secondary">{{ $item->created_at->format("M d, Y") }}</span>
+                                    </td>
+                                    <td class="data-table-td actions-col">
+                                        <div class="table-actions">
+                                            <a href="{{ route('dashboard.medicines.show', $item->id) }}" class="action-btn action-btn-view" title="View">
+                                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg>
+                                            </a>
+                                            <button class="action-btn action-btn-edit" title="Edit">
+                                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg>
+                                            </button>
+                                            <button class="action-btn action-btn-delete" title="Delete">
+                                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        @endif
+
+                        {{-- <!-- Medicine Row 2 -->
                         <tr class="data-table-row">
                             <td class="data-table-td checkbox-col">
                                 <input type="checkbox" class="table-checkbox">
@@ -432,7 +462,7 @@
                                     </button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
             </div>
@@ -444,15 +474,17 @@
                 </div>
                 <div class="table-pagination">
                     <button class="pagination-btn" disabled>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M15 18l-6-6 6-6"/>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M15 18l-6-6 6-6" />
                         </svg>
                     </button>
                     <button class="pagination-btn active">1</button>
                     <button class="pagination-btn">2</button>
                     <button class="pagination-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 18l6-6-6-6"/>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M9 18l6-6-6-6" />
                         </svg>
                     </button>
                 </div>

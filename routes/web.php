@@ -5,9 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/" , [SiteController::class, "home"])->name("home");
-Route::get("/medicines" , [SiteController::class, "medicines"])->name("medicines.index");
-Route::get("/medicines/{med:slug}" , [SiteController::class, "medicineDetails"])->name("medicines.show");
+Route::get("/", [SiteController::class, "home"])->name("home");
+Route::get("/medicines", [SiteController::class, "medicines"])->name("medicines.index");
+Route::get("/medicines/{med:slug}", [SiteController::class, "medicineDetails"])->name("medicines.show");
 
 
 
@@ -17,13 +17,39 @@ Route::get("/medicines/{med:slug}" , [SiteController::class, "medicineDetails"])
 
 
 
-// will change later
-Route::get('/dashboard', [AdminController::class, "dashboard"])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get("/dashboard/medicines", [AdminController::class, "medicine"])->middleware(['auth', 'verified'])->name('dashboard.medicines');
+
+
+// ===============================================
+// ===============================================
+// DASHBOARD ROUTES   ============================
+// ===============================================
+// ===============================================
+Route::middleware(['auth', 'verified'])->prefix("admin")->group(function () {
+    // Dashboard
+    Route::get('/', [AdminController::class, "dashboard"])->name('dashboard');
+    // Medicines
+    Route::get("/medicines", [AdminController::class, "medicine"])->name('dashboard.medicines');
+    Route::get("/medicines/create", [AdminController::class, "createMedicine"])->name('dashboard.medicines.create');
+    Route::get("/medicines/{medicine}/show", [AdminController::class, "showMedicine"])->name('dashboard.medicines.show');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
