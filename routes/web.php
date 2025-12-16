@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified'])->prefix("admin")->group(function () {
     // Medicines
     Route::get("/medicines", [AdminController::class, "medicine"])->name('dashboard.medicines');
     Route::get("/medicines/create", [AdminController::class, "createMedicine"])->name('dashboard.medicines.create');
+    Route::post("/medicines/store", [AdminController::class, "storeMedicine"])->name('dashboard.medicines.store');
     Route::get("/medicines/{medicine}/show", [AdminController::class, "showMedicine"])->name('dashboard.medicines.show');
 });
 

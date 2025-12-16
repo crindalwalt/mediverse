@@ -19,7 +19,7 @@
 
         <!-- Form Card -->
         <div class="form-card">
-            <form action="/admin/medicines" method="POST">
+            <form action="{{ route("dashboard.medicines.store") }}" method="POST">
                 @csrf
 
                 <!-- Basic Information Section -->
@@ -75,6 +75,7 @@
                                 <span class="required">*</span>
                             </label>
                             <select id="category_id" name="category_id" class="form-select" required>
+                                {{-- TODO: implement real categories --}}
                                 <option value="">Select a category</option>
                                 <option value="1">Medications</option>
                                 <option value="2">Diseases</option>
