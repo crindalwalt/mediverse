@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -22,7 +23,7 @@ class AdminController extends Controller
         $categories = Category::count();
         $published_medicines = Medicine::where('status', 'published')->count();
         $draft_medicines = Medicine::where('status', 'draft')->count();
-        $medicines = Medicine::all();
+        $medicines = Medicine::latest()->get();
         return view("admin.medicine.index", compact("medicines", "published_medicines", "draft_medicines", "categories"));
     }
 
@@ -73,7 +74,14 @@ class AdminController extends Controller
 
 
         // redrect to the medicines list with success message
-        // TODO: add success notification
+        Alert::success("Success", "Medicine created successfully.");
+        return redirect()->route("dashboard.medicines");
+    }
+
+    public function deleteMedicine (Medicine $medicine){
+        $medicine->delete();
+
+        Alert::success("Deleted", "Medicine deleted successfully.");
         return redirect()->route("dashboard.medicines");
     }
 }

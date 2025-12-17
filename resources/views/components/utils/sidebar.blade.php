@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-item">
-                    <a href="#" class="sidebar-nav-link">
+                    <a href="{{ route("dashboard.categories") }}" class="sidebar-nav-link @if(Route::currentRouteName() == 'dashboard.categories') active @endif">
                         <svg class="sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M12 2L2 7l10 5 10-5-10-5z" />

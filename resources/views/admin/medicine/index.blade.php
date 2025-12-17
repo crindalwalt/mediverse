@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="stat-card-body">
-                    <div class="stat-card-value">10</div>
+                    <div class="stat-card-value">{{ $medicines->count() }}</div>
                     <div class="stat-card-label">Total Medicines</div>
                 </div>
                 <div class="stat-card-footer">
@@ -40,8 +40,11 @@
                 </div>
             </div>
             @php
+            if($medicines->count() != 0)    {
                 $percentage = ($published_medicines/$medicines->count()) * 100;
-
+            }else{
+                $percentage = 0;
+            }
             @endphp
             <!-- Published -->
             <div class="stat-card">
@@ -219,20 +222,20 @@
                                                     <circle cx="12" cy="12" r="3" />
                                                 </svg>
                                             </a>
-                                            <button class="action-btn action-btn-edit" title="Edit">
+                                            <a class="action-btn action-btn-edit" title="Edit">
                                                 <svg width="16" height="16" viewBox="0 0 24 24"
                                                     fill="none" stroke="currentColor" stroke-width="2">
                                                     <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
                                                     <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
                                                 </svg>
-                                            </button>
-                                            <button class="action-btn action-btn-delete" title="Delete">
+                                            </a>
+                                            <a href="{{ route('dashboard.medicines.delete', $item->id) }}" class="action-btn action-btn-delete" title="Delete">
                                                 <svg width="16" height="16" viewBox="0 0 24 24"
                                                     fill="none" stroke="currentColor" stroke-width="2">
                                                     <path
                                                         d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

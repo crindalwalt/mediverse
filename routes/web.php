@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [SiteController::class, "home"])->name("home");
@@ -32,6 +34,12 @@ Route::middleware(['auth', 'verified'])->prefix("admin")->group(function () {
     Route::get("/medicines/create", [AdminController::class, "createMedicine"])->name('dashboard.medicines.create');
     Route::post("/medicines/store", [AdminController::class, "storeMedicine"])->name('dashboard.medicines.store');
     Route::get("/medicines/{medicine}/show", [AdminController::class, "showMedicine"])->name('dashboard.medicines.show');
+    Route::get('/medicines/{medicine}/delete', [AdminController::class, "deleteMedicine"])->name('dashboard.medicines.delete');
+
+
+    // Categories
+    Route::get("/categories", [CategoryController::class, "index"])->name('dashboard.categories');
+
 });
 
 

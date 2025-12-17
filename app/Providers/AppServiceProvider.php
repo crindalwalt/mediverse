@@ -11,7 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // register the sweetalert package service provider
+        // $this->app->register(\RealRashid\SweetAlert\SweetAlertServiceProvider::class);
+
     }
 
     /**

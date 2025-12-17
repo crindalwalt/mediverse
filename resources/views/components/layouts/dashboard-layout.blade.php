@@ -807,6 +807,8 @@
     </style>
 </head>
 <body>
+    @include('sweetalert::alert')
+
     <!-- ===== ADMIN LAYOUT ===== -->
     <div class="admin-layout">
 
